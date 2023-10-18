@@ -1,13 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import QRCodeSpiral from './qr-code/QrCodeSpiral';
+import BadgeList from './BadgeList';
 
 function App() {
-  return (
-    <div className="App">
-      <QRCodeSpiral url='https://www.google.com'></QRCodeSpiral>
-    </div>
-  );
+  return <BadgeList></BadgeList>;
 }
 
 export default App;

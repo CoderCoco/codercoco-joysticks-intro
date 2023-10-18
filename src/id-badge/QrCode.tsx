@@ -16,7 +16,7 @@ function QrCode({url}: Props) {
     setImageUrl()
   }, [url]);
 
-  return (<img src={image}/>);
+  return (<img className='qr-code' src={image}/>);
 };
 
 export default QrCode;

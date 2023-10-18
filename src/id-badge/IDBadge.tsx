@@ -12,12 +12,12 @@ interface Props {
 function IDBadge({ imageUrl, name, linkTree }: Props) {
   return (
     <div className="badge">
-      <img src={imageUrl} alt="Your Image" />
+      <img className="badge-image" src={imageUrl} alt="Your Image" />
       <h3>{name}</h3>
-      <QrCode url={linkTree}></QrCode>
+      
 
       <div className="company-info">
-        <span>Joysticks United</span>
+        <QrCode url={linkTree}></QrCode>
         <img className="company-logo" src="/Purple_JU_Logo.png" alt="Company Logo" />
       </div>
     </div>

@@ -40,34 +40,33 @@ export default function BadgeList() {
       linkTree: 'https://www.google.com'
     },
   ]);
-  const [animate, setAnimate] = useState(false);
+  const [insertIndex, setInsertIndex] = useState<number | null>(null);
 
-  const addBadge = () => {
+  const addBadge = (index: number) => {
     const newBadge: IDBadgeProps = { name: 'New Person', imageUrl: '/missing-image.jpg', linkTree: 'https://www.google.com' };
-    const middleIndex = Math.floor(badges.length / 2);
     const newBadges = [...badges];
-    newBadges.splice(middleIndex, 0, newBadge);
-
-    setAnimate(true);
+    newBadges.splice(index, 0, newBadge);
     setBadges(newBadges);
+    setInsertIndex(index);
   };
 
   // Reset animation state after it completes
   useEffect(() => {
-    if (animate) {
-      const timer = setTimeout(() => setAnimate(false), 500);
+    if (insertIndex !== null) {
+      const timer = setTimeout(() => setInsertIndex(null), 500);
       return () => clearTimeout(timer);
     }
-  }, [animate]);
+  }, [insertIndex]);
 
   return (
     <div>
-      <button onClick={addBadge}>Add Badge</button>
+      <button onClick={() => addBadge(0)}>Add Badge at Start</button>
+      <button onClick={() => addBadge(Math.floor(badges.length / 2))}>Add Badge in Middle</button>
+      <button onClick={() => addBadge(badges.length)}>Add Badge at End</button>
       <div className="badge-list">
         {
           badges.map((badge, index) => (
-            <div key={badge.name} className={`badge-item ${animate && index >= badges.length / 2 ? 'badge-animate' : ''}`}
-              style={{ transform: animate && index >= badges.length / 2 ? 'translateX(320px)' : 'translateX(0)' }}>
+            <div className={`badge-item ${index === insertIndex ? 'animate-insert' : ''}`}>
               <IDBadge name={badge.name} imageUrl={badge.imageUrl} linkTree={badge.linkTree} />
             </div>
           ))

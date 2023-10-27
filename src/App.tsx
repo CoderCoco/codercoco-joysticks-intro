@@ -1,11 +1,12 @@
 import React from 'react';
-import BadgeList from './BadgeList';
+import AppSidebarView from './app-sidebar-view/AppSidebarView'
 import LoginEmulator from './login/LoginEmulator'
 import './App.css'
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
+import BadgeList from './cast-and-crew/BadgeList';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/cast-and-crew",
-    element: <BadgeList />,
+    element: <AppSidebarView />,
   },
 ]);
 

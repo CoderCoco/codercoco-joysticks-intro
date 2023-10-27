@@ -13,7 +13,7 @@ export default function LoginEmulator() {
     // Handle login logic here
     console.log(`Email: ${email}, Password: ${password}`);
 
-    if (email === 'test@email.com' && password === 'password') {
+    if (email === 'joysticks@email.com' && password === 'password') {
       navigate('/cast-and-crew');
     } else {
       alert('Invalid credentials');

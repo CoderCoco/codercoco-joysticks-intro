@@ -1,20 +1,15 @@
 import React from 'react';
 import './IDBadge.css';
-import QRCodeSpiral from './QrCode';
-import QrCode from './QrCode';
+import QrCode from '../QrCode';
+import { IDBadgeProps } from '../IDBadgeProps';
 
-interface Props {
-  imageUrl: string
-  name: string
-  linkTree: string
-}
 
-function IDBadge({ imageUrl, name, linkTree }: Props) {
+function IDBadge({ imageUrl, name, linkTree }: IDBadgeProps) {
   return (
     <div className="badge">
       <img className="badge-image" src={imageUrl} alt="Your Image" />
-
-      <div className='name-layer'><h3 className="name">{name}</h3></div>      
+      <h3>{name}</h3>
+      
 
       <div className="company-info">
         <QrCode url={linkTree}></QrCode>

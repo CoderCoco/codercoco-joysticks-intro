@@ -1,46 +1,43 @@
-import IDBadge from '../id-badge/IDBadge';
+import IDBadge from '../badge-logic/id-badge/IDBadge';
 import React, {useState, useEffect, useRef} from 'react';
 import "./BadgeList.css"
+import IDBadgeLogic from '../badge-logic/IDBadgeLogic';
 
 interface IDBadgeProps {
+  id: number;
   name: string;
   imageUrl: string;
   linkTree: string;
 }
 
-  // return (
-  //   <div className="badge-list">
-  //     <IDBadge name='MilesG170' imageUrl='/milesg170.png' linkTree='https://www.google.com'></IDBadge>
-  //     <IDBadge name='E To Interact' imageUrl='/missing-image.jpg' linkTree='https://www.google.com'></IDBadge>
-  //     <IDBadge name='Xenostream38' imageUrl='/xenostream38.png' linkTree='https://www.google.com'></IDBadge>
-  //     <IDBadge name='ToastGB' imageUrl='/missing-image.jpg' linkTree='https://www.google.com'></IDBadge>
-  //   </div>
-  // )
-
 export default function BadgeList() {
   const [badges, setBadges] = useState<IDBadgeProps[]>([
     {
+      id: 0,
       name: 'E To Interact',
       imageUrl: '/missing-image.jpg',
       linkTree: 'https://linktr.ee/EToInteract'
     },
     {
+      id: 1,
       name: 'MilesG170',
       imageUrl: '/milesg170.png',
       linkTree: 'https://linktr.ee/MilesG170'
     },
     {
+      id: 2,
       name: 'Xenostream38',
       imageUrl: '/xenostream38.png',
       linkTree: 'https://linktr.ee/xenostream38'
     },
     {
+      id: 3,
       name: 'ToastGB',
       imageUrl: '/missing-image.jpg',
       linkTree: 'https://linktr.ee/toastgb'
     }
   ]);
-  const [insertName, setInsertName] = useState(new Set<string>());
+  const [insertIndex, setInsertIndex] = useState(new Set<number>());
 
   const addBadge = (newPerson: IDBadgeProps) => {
     const newBadges = [...badges, newPerson];
@@ -48,20 +45,22 @@ export default function BadgeList() {
     newBadges.sort((a, b) => a.name.localeCompare(b.name));
 
     setBadges(newBadges);
-    setInsertName(new Set([newPerson.name]))
+
+    insertIndex.add(newPerson.id)
+    setInsertIndex(new Set(insertIndex))
   };
 
   const addCoderCoco = () => {
-    addBadge({name: "CoderCoco", linkTree: 'https://linktr.ee/codercoco', imageUrl: './CoinLogo_Resized.png'})
+    addBadge({id: badges.length, name: "CoderCoco", linkTree: 'https://linktr.ee/codercoco', imageUrl: './CoinLogo_Resized.png'})
   }
 
   // Reset animation state after it completes
   useEffect(() => {
-    if (insertName.size > 0) {
-      const timer = setTimeout(() => setInsertName(new Set()), 500);
+    if (insertIndex.size > 0) {
+      const timer = setTimeout(() => setInsertIndex(new Set()), 500);
       return () => clearTimeout(timer);
     }
-  }, [insertName]);
+  }, [insertIndex]);
 
   return (
     <div>
@@ -69,8 +68,8 @@ export default function BadgeList() {
       <div className="badge-list">
         {
           badges.map((badge) => (
-            <div className={`badge-item ${insertName.has(badge.name) ? 'animate-insert' : ''}`}>
-              <IDBadge name={badge.name} imageUrl={badge.imageUrl} linkTree={badge.linkTree} />
+            <div className={`badge-item ${insertIndex.has(badge.id) ? 'animate-insert' : ''}`}>
+              <IDBadgeLogic name={badge.name} imageUrl={badge.imageUrl} linkTree={badge.linkTree} />
             </div>
           ))
         }

@@ -1,0 +1,60 @@
+.badge {
+  position: relative;
+  width: 300px;
+  border-radius: 15px;
+  border: 2px solid #ccc;
+  text-align: center;
+  padding: 20px;
+  margin-right: 20px;
+  background-color: white;
+}
+.badge-image {
+  height: 200px;
+  border-radius: 25%;
+}
+
+.company-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.company-info img {
+  height: 80px;
+}
+
+/* Glitch Effect */
+
+.glitch {
+  position: relative;
+  animation: glitch 0.2s infinite alternate;
+  will-change: transform;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  will-change: transform;
+}
+
+.glitch::before {
+  color: red;
+}
+
+.glitch::after {
+  color: blue;
+}
+
+@keyframes glitch {
+  100% {
+    transform: translateX(var(--trans-x, 0px)) translateY(var(--trans-y, 0px));
+  }
+}

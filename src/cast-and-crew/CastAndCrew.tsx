@@ -1,6 +1,6 @@
 import React from 'react';
 import './CastAndCrew.css';
-import BadgeList from './BadgeList';
+import BadgeList from './badge-list/BadgeList';
 
 export default function CastAndCrew() {
   return (

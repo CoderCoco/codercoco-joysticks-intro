@@ -1,4 +1,4 @@
-import IDBadge from './IDBadge';
+import IDBadge from '../id-badge/IDBadge';
 import React, {useState, useEffect, useRef} from 'react';
 import "./BadgeList.css"
 
@@ -19,41 +19,28 @@ interface IDBadgeProps {
 
 export default function BadgeList() {
   const [badges, setBadges] = useState<IDBadgeProps[]>([
-    
+    {
+      name: 'E To Interact',
+      imageUrl: '/missing-image.jpg',
+      linkTree: 'https://linktr.ee/EToInteract'
+    },
+    {
+      name: 'MilesG170',
+      imageUrl: '/milesg170.png',
+      linkTree: 'https://linktr.ee/MilesG170'
+    },
+    {
+      name: 'Xenostream38',
+      imageUrl: '/xenostream38.png',
+      linkTree: 'https://linktr.ee/xenostream38'
+    },
+    {
+      name: 'ToastGB',
+      imageUrl: '/missing-image.jpg',
+      linkTree: 'https://linktr.ee/toastgb'
+    }
   ]);
   const [insertName, setInsertName] = useState(new Set<string>());
-
-  useEffect(() => {
-    const initialBadges: IDBadgeProps[] = [
-      {
-        name: 'MilesG170',
-        imageUrl: '/milesg170.png',
-        linkTree: 'https://linktr.ee/MilesG170'
-      },
-      {
-        name: 'E To Interact',
-        imageUrl: '/missing-image.jpg',
-        linkTree: 'https://linktr.ee/EToInteract'
-      },
-      {
-        name: 'Xenostream38',
-        imageUrl: '/xenostream38.png',
-        linkTree: 'https://linktr.ee/xenostream38'
-      },
-      {
-        name: 'ToastGB',
-        imageUrl: '/missing-image.jpg',
-        linkTree: 'https://linktr.ee/toastgb'
-      }
-    ];
-
-    initialBadges.forEach((badge, index) => {
-      setTimeout(() => {
-        setBadges(prevBadges => [...prevBadges, badge]);
-        setInsertName(prevNames => new Set([...prevNames, badge.name]));
-      }, index * 600); // 600ms delay between each badge
-    });
-  }, [])
 
   const addBadge = (newPerson: IDBadgeProps) => {
     const newBadges = [...badges, newPerson];

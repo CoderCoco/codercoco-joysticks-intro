@@ -13,8 +13,8 @@ function IDBadge({ imageUrl, name, linkTree }: Props) {
   return (
     <div className="badge">
       <img className="badge-image" src={imageUrl} alt="Your Image" />
-      <h3>{name}</h3>
-      
+
+      <div className='name-layer'><h3 className="name">{name}</h3></div>      
 
       <div className="company-info">
         <QrCode url={linkTree}></QrCode>

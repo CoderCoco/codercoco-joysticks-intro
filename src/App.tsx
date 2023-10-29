@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
-import BadgeList from './cast-and-crew/BadgeList';
+import BadgeList from './cast-and-crew/badge-list/BadgeList';
 
 const router = createBrowserRouter([
   {

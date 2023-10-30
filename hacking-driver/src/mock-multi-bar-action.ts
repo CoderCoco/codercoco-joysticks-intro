@@ -1,6 +1,6 @@
 import { MultiBar } from "cli-progress";
 import ansiColors from "ansi-colors";
-import { sleep } from "./src/util";
+import { sleep } from "./util";
 
 export class MockMultiBarAction {
   private readonly multibar: MultiBar;

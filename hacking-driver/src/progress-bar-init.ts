@@ -1,7 +1,7 @@
 import { MultiBar } from "cli-progress";
 import ansiColors from "ansi-colors";
 import { sleep } from "./util";
-import { MockMultiBarAction } from "../mock-multi-bar-action";
+import { MockMultiBarAction } from "./mock-multi-bar-action";
 
 export async function initHack(): Promise<void> {
   console.log("loading binaries");

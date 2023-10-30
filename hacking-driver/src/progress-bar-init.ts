@@ -42,8 +42,8 @@ async function loadBinaries(): Promise<void> {
 
 async function verifyRoster(): Promise<void> {
   const mockBar = new MockMultiBarAction(
-    ansiColors.bgRedBright,
-    ansiColors.yellowBright
+    ansiColors.bgBlueBright,
+    ansiColors.cyanBright
   );
   const delayTime = 250;
 

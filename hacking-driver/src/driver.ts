@@ -33,8 +33,6 @@ export class Driver {
       .setChromeOptions(chromeOpts)
       .build();
 
-    // await this.driver.manage().window().setRect({ x: -2560, y: 0 });
-
     // Restore original stdout
     process.stdout.write = originalWrite;
     this.navigateToJoysticks()

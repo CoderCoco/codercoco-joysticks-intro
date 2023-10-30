@@ -17,8 +17,8 @@ export class UserPage {
     console.log("Uploading new user!");
     console.log()
     const fakeUpload = new MockMultiBarAction(
-      ansiColors.yellowBright,
-      ansiColors.redBright
+      ansiColors.yellow,
+      ansiColors.red
     )
 
     fakeUpload.addBar("upload", 500, 25);

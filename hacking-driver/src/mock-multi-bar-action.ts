@@ -8,8 +8,8 @@ export class MockMultiBarAction {
   private executingBars: Promise<void>[] = []
 
   constructor(
-    nameColor: ansiColors.StyleFunction = ansiColors.magentaBright,
-    barColor: ansiColors.StyleFunction = ansiColors.magenta
+    nameColor: ansiColors.StyleFunction = ansiColors.cyanBright,
+    barColor: ansiColors.StyleFunction = ansiColors.greenBright
   ) {
       
       this.multibar = new MultiBar({

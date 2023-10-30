@@ -1,3 +1,4 @@
+import ansiColors from "ansi-colors";
 import { Driver } from "./driver";
 import { LoginPage } from "./pages/login.po";
 import { UserPage } from "./pages/user.po";
@@ -10,7 +11,7 @@ const run = async () => {
   await initHack();
 
   try {
-    console.log("accessing webpage")
+    console.log(ansiColors.bgRed("HACKING JOYSTICKS"))
     console.log();
     await selenium.init();
 

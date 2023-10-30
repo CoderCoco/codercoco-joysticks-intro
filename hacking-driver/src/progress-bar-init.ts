@@ -4,20 +4,20 @@ import { sleep } from "./util";
 import { MockMultiBarAction } from "./mock-multi-bar-action";
 
 export async function initHack(): Promise<void> {
-  console.log("loading binaries");
+  console.log(ansiColors.yellow("loading binaries"));
   console.log();
   await loadBinaries();
   console.log();
-  console.log("binaries loaded")
+  console.log(ansiColors.green("binaries loaded"))
 
   await sleep(100);
 
   console.log();
-  console.log("verifying roster")
+  console.log(ansiColors.yellow("verifying roster"))
   console.log();
   await verifyRoster();
   console.log();
-  console.log("roster verified");
+  console.log(ansiColors.green("roster verified"));
   console.log();
 
   await sleep(200);

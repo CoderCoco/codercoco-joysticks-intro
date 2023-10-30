@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   private progressBar = new MultiBar({
-    format: ansiColors.green('{name} ') + '|' + ansiColors.greenBright('{bar}') + '| {percentage}% ',
+    format: ansiColors.yellow('{name} ') + '|' + ansiColors.red('{bar}') + '| {percentage}% ',
     barCompleteChar: '\u2588',
     barIncompleteChar: '\u2591',
     hideCursor: true

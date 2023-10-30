@@ -8,13 +8,11 @@
 
 .animate-insert {
   max-width: 0;
-  margin-right: 20px;
   animation: expand 0.5s ease-in-out forwards;
 }
 
 @keyframes expand {
   to {
-    margin-right: 20px;
     max-width: 400px;
   }
 }

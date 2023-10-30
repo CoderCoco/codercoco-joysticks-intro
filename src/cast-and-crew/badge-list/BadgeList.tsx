@@ -51,7 +51,7 @@ export default function BadgeList() {
     setInsertIndex(new Set(insertIndex))
   };
 
-  useHotkeys('ctrl+c+o', () => {
+  useHotkeys('ctrl+alt+c', () => {
     addBadge({id: badges.length, name: "CoderCoco", linkTree: 'https://linktr.ee/codercoco', imageUrl: './CoinLogo_Resized.png'})
   });
 

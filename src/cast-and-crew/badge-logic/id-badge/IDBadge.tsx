@@ -7,7 +7,7 @@ import { IDBadgeProps } from '../IDBadgeProps';
 function IDBadge({ imageUrl, name, linkTree }: IDBadgeProps) {
   return (
     <div className="badge">
-      <img className="badge-image" src={imageUrl} alt="Your Image" />
+      <div className="badge-image" style={{ backgroundImage: `url(${imageUrl})` }}></div>
       <h3>{name}</h3>
       
 

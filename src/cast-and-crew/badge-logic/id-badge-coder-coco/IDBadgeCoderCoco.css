@@ -14,7 +14,11 @@
   justify-content: center; /* Vertical centering */
 }
 .badge-image {
-  height: 200px;
+  width: 200px;  /* Fixed width */
+  height: 200px; /* Fixed height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 25%;
 }
 

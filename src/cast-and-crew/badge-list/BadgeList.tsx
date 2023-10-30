@@ -16,7 +16,7 @@ export default function BadgeList() {
     {
       id: 0,
       name: 'E To Interact',
-      imageUrl: '/missing-image.jpg',
+      imageUrl: '/E_headshot_1.png',
       linkTree: 'https://linktr.ee/EToInteract'
     },
     {
@@ -34,7 +34,7 @@ export default function BadgeList() {
     {
       id: 3,
       name: 'ToastGB',
-      imageUrl: '/missing-image.jpg',
+      imageUrl: '/toast.jpg',
       linkTree: 'https://linktr.ee/toastgb'
     }
   ]);

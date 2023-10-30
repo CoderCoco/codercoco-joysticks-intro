@@ -14,8 +14,8 @@ export default function GlitchImage({url, numGlitches}: Props) {
   const glitchEffect = () => {
     if (imageRef.current == null) return;
 
-    const randomTranslate = getRandomNumber(-10, 40);
-    const randomRotate = getRandomNumber(-15, 15);
+    const randomTranslate = getRandomNumber(-10, 10);
+    const randomRotate = getRandomNumber(-180, 180);
     const randomSkew = getRandomNumber(-15, 15);
     const randomColor = getRandomNumber(0, 360);
     const opacity = 1 / numGlitches;

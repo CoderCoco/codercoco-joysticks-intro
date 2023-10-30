@@ -1,6 +1,6 @@
 import { By, WebElement } from "selenium-webdriver";
 import { Driver } from "../driver";
-import { sleep, throwErrorIfNull } from "../util";
+import { getRandomNumber, sleep, throwErrorIfNull } from "../util";
 import {EMAIL, PASSWORD} from "../../../src/hacking-internals/inputs"
 import { MultiBar, SingleBar } from "cli-progress";
 import ansiColors from "ansi-colors";
@@ -37,23 +37,23 @@ export class LoginPage {
   }
 
   public async hackLoginPage(): Promise<void> {
-    await this.fillInEmail();
-    await this.fillInPassword();
+    const p1 = this.fillInEmail();
+    const p2 = this.fillInPassword();
+
+    await Promise.all([p1, p2]);
 
     this.progressBar.stop();
 
-    await sleep(1000);
+    await sleep(100);
     await this.submitButton.click();
-    // await this.passwordBox.sendKeys(PASSWORD);
   }
 
   private async fillInEmail(): Promise<void> {
-    const waitTime = 100
     const expectedEmail = EMAIL;
     const total = expectedEmail.length;
     const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
     const progressBar = this.progressBar.create(total + 1, 0);
-    progressBar.update(0, {name: "Hacking Email"})
+    progressBar.update(0, {name: "Hacking Email   "})
 
     const getScrambled = (count: number) => {
       let scrambled = ''
@@ -70,7 +70,7 @@ export class LoginPage {
     await this.updateEmail(getScrambled(total));
 
     for(let i = 1; i <= total; i++) {
-      await sleep(waitTime)
+      await sleep(getRandomNumber(100, 250))
 
       progressBar.increment()
       await this.updateEmail(expectedEmail.substring(0, i) + getScrambled(total - i))
@@ -80,6 +80,37 @@ export class LoginPage {
   }
 
   private async fillInPassword(): Promise<void> {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+    const numLoops = 100;
+    const waitTime = 50;
+
+    const progressBar = this.progressBar.create(numLoops, 0);
+    progressBar.update(0, {name: "Hacking Password"})
+
+    const getScrambled = (count: number) => {
+      let scrambled = ''
+    
+      for (let i = 0; i < count; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        scrambled += charset[randomIndex];
+      }
+
+      return scrambled
+    }
+
+    for(let i = 0; i <= numLoops; i++) {
+      await sleep(getRandomNumber(10, 100))
+
+      progressBar.increment()
+      await this.updatePassword(getScrambled(getRandomNumber(16, 32)));
+    }
+
+    progressBar.increment();
+    await this.updatePassword(PASSWORD);
+
+    progressBar.stop();
+    
+
     await this.updatePassword(PASSWORD);
   }
 

@@ -1,33 +1,47 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './IDBadgeCoderCoco.css';
 import QrCode from '../QrCode';
 import { IDBadgeProps } from '../IDBadgeProps';
+import GlitchImage from './glitch-image/GlitchImage';
 
 export default function IDBadgeCoderCoco({ imageUrl, name, linkTree }: IDBadgeProps) {
-  const element = useRef<HTMLDivElement | null>(null)
+  const [glitchName, setGlitchName] = useState(name);
 
   useEffect(() => {
+    const chars = '!@#$%^&*()_+=-[]\\{}|:";\'<>?,./`~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const glitchInterval = setInterval(() => {
-      if (element.current == null) {
-        return
-      }
+      let glitched = '';
+      let rate = 0.2;
 
-      const random1 = Math.floor(Math.random() * 10) - 5;
-      const random2 = Math.floor(Math.random() * 10) - 5;
-      element.current.style.setProperty('--trans-x', `${random1}px`);
-      element.current.style.setProperty('--trans-y', `${random2}px`);
-    }, 100); // Adjust time for more or less frequent updates
+      for (let i = 0; i < name.length; i++) {
+        if (Math.random() < rate) {  // 20% chance to replace this character
+          rate = 0.2
+          glitched += chars.charAt(Math.floor(Math.random() * chars.length));
+        } else {
+          rate *= 2
+          glitched += name[i];
+        }
+      }
+      setGlitchName(glitched);
+    }, 100); // Change this value to make the glitch more or less frequent
 
     return () => clearInterval(glitchInterval);
-  }, []);
+  }, [name]);
 
+  const imageGlitches: JSX.Element[] = []
+  const numGlitches = 25;
+
+  for (let i = 0; i < numGlitches; i++) {
+    imageGlitches.push(<GlitchImage url={imageUrl} numGlitches={10}/>)
+  }
+  
   return (
     <div className="badge">
-      <img className="badge-image" src={imageUrl} alt="Your Image" />
-      
-      <div ref={element} className="glitch" data-text={name}>
-        <h3 className="name">{name}</h3>
+      <div className='glitch-container'>
+        {imageGlitches}
       </div>
+        
+      <h3 className="name">{glitchName}</h3>
 
       <div className="company-info">
         <QrCode url={linkTree}></QrCode>

@@ -2,6 +2,7 @@ import IDBadge from '../badge-logic/id-badge/IDBadge';
 import React, {useState, useEffect, useRef} from 'react';
 import "./BadgeList.css"
 import IDBadgeLogic from '../badge-logic/IDBadgeLogic';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 interface IDBadgeProps {
   id: number;
@@ -50,9 +51,9 @@ export default function BadgeList() {
     setInsertIndex(new Set(insertIndex))
   };
 
-  const addCoderCoco = () => {
+  useHotkeys('ctrl+c+o', () => {
     addBadge({id: badges.length, name: "CoderCoco", linkTree: 'https://linktr.ee/codercoco', imageUrl: './CoinLogo_Resized.png'})
-  }
+  });
 
   // Reset animation state after it completes
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function BadgeList() {
 
   return (
     <div>
-      <button onClick={() => addCoderCoco()}>Add CoderCoco</button>
+      {/* <button onClick={() => addCoderCoco()}>Add CoderCoco</button> */}
       <div className="badge-list">
         {
           badges.map((badge) => (

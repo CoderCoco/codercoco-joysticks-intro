@@ -24,12 +24,16 @@ export class Driver {
     prefs.setLevel(logging.Type.BROWSER, logging.Level.OFF);
     prefs.setLevel(logging.Type.DRIVER, logging.Level.OFF);
 
+    const chromeOpts = new chrome.Options().excludeSwitches("enable-logging", "enable-automation")
+      .addArguments("--kiosk", "--window-position=-2560,0", "--disable-infobars", "--disable-notifications")
+      
+
     this._driver =  await new Builder().forBrowser("chrome")
       .setLoggingPrefs(prefs)
-      .setChromeOptions(
-        new chrome.Options()
-        .excludeSwitches("enable-logging")
-      ).build();
+      .setChromeOptions(chromeOpts)
+      .build();
+
+    // await this.driver.manage().window().setRect({ x: -2560, y: 0 });
 
     // Restore original stdout
     process.stdout.write = originalWrite;

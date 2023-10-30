@@ -7,7 +7,7 @@ const run = async () => {
   // Initialize a Chrome driver
   let selenium = new Driver()
 
-  await initHack();
+  // await initHack();
 
   try {
     console.log("accessing webpage")

@@ -9,8 +9,7 @@ export default function LoginEmulator() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = (): void => {
     // Handle login logic here
     console.log(`Email: ${email}, Password: ${password}`);
 
@@ -48,7 +47,7 @@ export default function LoginEmulator() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button onClick={handleSubmit} id="submit-button" type="button">Login</button>
       </form>
     </div>
   );

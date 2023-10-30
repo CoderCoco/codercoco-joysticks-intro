@@ -33,7 +33,7 @@ export class LoginPage {
   public async init(): Promise<void> {
     this._emailBox = await this.selenium.waitForElement(By.id("email"))
     this._passwordBox = await this.selenium.waitForElement(By.id("password"))
-    this._submitButton = await this.selenium.waitForElement(By.css("button[type=submit]"))
+    this._submitButton = await this.selenium.waitForElement(By.id("submit-button"))
   }
 
   public async hackLoginPage(): Promise<void> {

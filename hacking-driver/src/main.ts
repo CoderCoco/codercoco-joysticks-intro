@@ -1,12 +1,17 @@
 import { Driver } from "./driver";
 import { LoginPage } from "./pages/login.po";
+import { initHack } from "./progress-bar-init";
 import { sleep } from "./util";
 
 const run = async () => {
   // Initialize a Chrome driver
   let driver = new Driver()
 
+  await initHack();
+
   try {
+    console.log("accessing webpage")
+    console.log();
     await driver.init();
 
     const login = new LoginPage(driver);

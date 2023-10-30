@@ -1,4 +1,4 @@
-import { Locator, WebDriver, WebElement } from "selenium-webdriver";
+import { Locator, WebDriver, WebElement, logging } from "selenium-webdriver";
 import { Builder } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
 import { throwErrorIfNull } from "./util";
@@ -15,7 +15,24 @@ export class Driver {
   constructor(){}
 
   public async init(): Promise<void> {
-    this._driver =  await new Builder().forBrowser("chrome").setChromeOptions(new chrome.Options().excludeSwitches("enable-logging")).build();
+    // Redirect stdout to null to hide messages
+    let originalWrite = process.stdout.write;
+    process.stdout.write = () => true;
+
+    // Suppress WebDriver logging
+    const prefs = new logging.Preferences();
+    prefs.setLevel(logging.Type.BROWSER, logging.Level.OFF);
+    prefs.setLevel(logging.Type.DRIVER, logging.Level.OFF);
+
+    this._driver =  await new Builder().forBrowser("chrome")
+      .setLoggingPrefs(prefs)
+      .setChromeOptions(
+        new chrome.Options()
+        .excludeSwitches("enable-logging")
+      ).build();
+
+    // Restore original stdout
+    process.stdout.write = originalWrite;
     this.navigateToJoysticks()
   }
 

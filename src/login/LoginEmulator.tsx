@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./LoginEmulator.css"
 import { useNavigate } from 'react-router-dom'
+import { EMAIL, PASSWORD } from '../hacking-internals/inputs';
 
 
 export default function LoginEmulator() {
@@ -13,7 +14,7 @@ export default function LoginEmulator() {
     // Handle login logic here
     console.log(`Email: ${email}, Password: ${password}`);
 
-    if (email === 'joysticks@email.com' && password === 'password') {
+    if (email === EMAIL && password === PASSWORD) {
       navigate('/cast-and-crew');
     } else {
       alert('Invalid credentials');
